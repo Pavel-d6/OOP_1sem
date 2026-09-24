@@ -1,6 +1,6 @@
-#include <iostream>
 #include <limits>
 #include "str_ops.h"
+#include <iostream>
 
 int menu(){
     std::cout<<"1. Ввести строку\n";
@@ -53,12 +53,12 @@ int main(){
     int input_param, out_pos;
     char* src = nullptr;
     char* searchString = nullptr;
+    bool key;
 
     std::cout<<"Вариант 10: C-строки через указатели char*\n";
 
     while (true){
         menu();
-        
         if (!(std::cin>>input_param)){
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -100,7 +100,19 @@ int main(){
             case 5:
                 if (src != nullptr){
                     out_pos = -1;
-                    std::cout<<str_count_words(src)<<"слова; строка >> "<<searchString<<" - "<<str_find_substr(src, searchString, out_pos)<<'\n';
+                    searchString = input_learn(searchString);
+                    if (searchString == nullptr){
+                        std::cout << "Ошибка ввода строки поиска\n";
+                        break;
+                    }
+                    key = str_find_substr(src, searchString, out_pos);
+                    if (key){
+                        std::cout<<str_count_words(src)<<"слова; строка >> "<<searchString<<" - "<<key<<"out_pos="<<out_pos<<'\n';
+                    }
+                    else{
+                        std::cout<<str_count_words(src)<<"слова; строка >> "<<searchString<<" - "<<key<<'\n';
+                    }
+                    str_delete(searchString);
                     break;
                 }
                 std::cout<<"Введите строку в пункте 1\n";
