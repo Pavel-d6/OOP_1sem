@@ -107,7 +107,7 @@ int main(){
                     }
                     key = str_find_substr(src, searchString, out_pos);
                     if (key){
-                        std::cout<<str_count_words(src)<<"слова; строка >> "<<searchString<<" - "<<key<<"out_pos="<<out_pos<<'\n';
+                        std::cout<<str_count_words(src)<<" слова; строка >> "<<searchString<<" - "<<key<<" ut_pos="<<out_pos<<'\n';
                     }
                     else{
                         std::cout<<str_count_words(src)<<"слова; строка >> "<<searchString<<" - "<<key<<'\n';
